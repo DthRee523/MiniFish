@@ -1,4 +1,5 @@
 /**
+ * Copyright (C) 2022 DthRee.
  * MiniFish LoginWindow Header File
  * Date: 2022.3.27
  * By:Dthree
