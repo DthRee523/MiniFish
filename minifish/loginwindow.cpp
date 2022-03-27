@@ -7,6 +7,7 @@ LoginWindow::LoginWindow(QWidget *parent)
 {
     ui->setupUi(this);
     this->setWindowTitle("MiniFish By:DthRee");
+    this->resize(1200, 800);//set Window Size
 }
 
 LoginWindow::~LoginWindow()
