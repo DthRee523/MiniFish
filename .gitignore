@@ -1,2 +1,3 @@
 minifish/*.pro.user
 minifish/*.pro.user.*
+build*
