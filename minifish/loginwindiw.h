@@ -2,31 +2,32 @@
  * Copyright 2022 DthRee.
  * All right reserved. See COPYRIGHT for detailed Information.
  *
- * @file       mainwindow.h
- * @brief      MainWindow Widget
+ * @file       loginwindiw.h
+ * @brief      LoginWindow Widget
  *
  * @author     DthRee<liuhuan@dthree.cn>
  * @date       2022/04/03
  * @history
  *****************************************************************************/
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef LOGINWINDIW_H
+#define LOGINWINDIW_H
 
-#include <QMainWindow>
+#include <QWidget>
 
-QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
-QT_END_NAMESPACE
+namespace Ui {
+class LoginWindiw;
+}
 
-class MainWindow : public QMainWindow
+class LoginWindiw : public QWidget
 {
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    explicit LoginWindiw(QWidget *parent = nullptr);
+    ~LoginWindiw();
 
 private:
-    Ui::MainWindow *ui;
+    Ui::LoginWindiw *ui;
 };
-#endif // MAINWINDOW_H
+
+#endif // LOGINWINDIW_H
