@@ -1,6 +1,6 @@
 /**
  * Copyright (C) 2022 DthRee.
- * MiniFish Server Project
+ * MiniFish Server of Windows
  * Date: 2022.4.3
  * By:Dthree
  * Version: 1.0
@@ -14,9 +14,14 @@
  * 我是DthRe​​e，一个让人们在工作中快乐的摸鱼的发起者！
  * 去享受快乐！ 英文不好 上面是机翻内容
  */
-#include <iostream>
+#include "mainwindow.h"
 
-int main() {
-    std::cout << "Hello, World!" << std::endl;
-    return 0;
+#include <QApplication>
+
+int main(int argc, char *argv[])
+{
+    QApplication a(argc, argv);
+    MainWindow w;
+    w.show();
+    return a.exec();
 }

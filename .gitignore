@@ -1,4 +1,6 @@
 minifish/*.user
 minifish/*.user.*
 build*
-server/cmake-build-debug/*
+server/linux/cmake-build-debug/*
+server/build*
+server/linux/.idea
