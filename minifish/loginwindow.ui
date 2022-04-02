@@ -2,8 +2,8 @@
  <author/>
  <comment/>
  <exportmacro/>
- <class>LoginWindiw</class>
- <widget class="QWidget" name="LoginWindiw">
+ <class>LoginWindow</class>
+ <widget class="QWidget" name="LoginWindow">
   <property name="geometry">
    <rect>
     <x>0</x>

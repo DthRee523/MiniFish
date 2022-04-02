@@ -31,6 +31,7 @@ public:
     explicit NetWork(QObject *parent = nullptr);
 
 signals:
+    void connectStatus(bool status);    //send connection status
 
 private:
     std::string HostIP;

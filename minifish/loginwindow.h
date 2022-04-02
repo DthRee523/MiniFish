@@ -9,25 +9,25 @@
  * @date       2022/04/03
  * @history
  *****************************************************************************/
-#ifndef LOGINWINDIW_H
-#define LOGINWINDIW_H
+#ifndef LOGINWINDOW_H
+#define LOGINWINDOW_H
 
 #include <QWidget>
 
 namespace Ui {
-class LoginWindiw;
+class LoginWindow;
 }
 
-class LoginWindiw : public QWidget
+class LoginWindow : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit LoginWindiw(QWidget *parent = nullptr);
-    ~LoginWindiw();
+    explicit LoginWindow(QWidget *parent = nullptr);
+    ~LoginWindow();
 
 private:
-    Ui::LoginWindiw *ui;
+    Ui::LoginWindow *ui;
 };
 
-#endif // LOGINWINDIW_H
+#endif // LOGINWINDOW_H
