@@ -14,25 +14,24 @@
  * 我是DthRe​​e，一个让人们在工作中快乐的摸鱼的发起者！
  * 去享受快乐！ 英文不好 上面是机翻内容
  */
-#ifndef LOGINWINDOW_H
-#define LOGINWINDOW_H
+#ifndef MAINWINDOW_H
+#define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QThread>
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class LoginWindow; }
+namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
-class LoginWindow : public QMainWindow
+class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    LoginWindow(QWidget *parent = nullptr);
-    ~LoginWindow();
+    MainWindow(QWidget *parent = nullptr);
+    ~MainWindow();
 
 private:
-    Ui::LoginWindow *ui;
+    Ui::MainWindow *ui;
 };
-#endif // LOGINWINDOW_H
+#endif // MAINWINDOW_H
