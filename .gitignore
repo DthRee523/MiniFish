@@ -4,3 +4,5 @@ build*
 server/linux/cmake-build-debug/*
 server/build*
 server/linux/.idea
+server/windows/*.user
+server/windows/*.user.*
