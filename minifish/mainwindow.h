@@ -12,7 +12,11 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+//QT Header
 #include <QMainWindow>
+
+//C++ Header
+#include "loginwindow.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -26,7 +30,11 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+public slots:
+    void getConnecedStatus(bool status);
+
 private:
     Ui::MainWindow *ui;
+    LoginWindow *loginWindow;
 };
 #endif // MAINWINDOW_H
