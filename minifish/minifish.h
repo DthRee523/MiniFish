@@ -12,7 +12,21 @@
 #ifndef MINIFISH_H
 #define MINIFISH_H
 
+#include <QApplication>
 #include <QMainWindow>
+#include <QString>
+#include <QTimer>
+#include <QDebug>
+#include <QThread>
+
+#define QT_MAIN_APPLICATION \
+    int main(int argc, char *argv[]) \
+    { \
+        QApplication a(argc, argv);\
+        MiniFish w; \
+        w.show(); \
+        return a.exec(); \
+    }
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MiniFish; }
@@ -26,7 +40,13 @@ public:
     MiniFish(QWidget *parent = nullptr);
     ~MiniFish();
 
+    void changeMainWindow();
+
+private slots:
+    void on_connect_btn_clicked();
+
 private:
     Ui::MiniFish *ui;
+    QString WindowTitle = "MiniFish-";
 };
 #endif // MINIFISH_H

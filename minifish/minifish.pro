@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -9,11 +9,15 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    fileio.cpp \
     main.cpp \
-    minifish.cpp
+    minifish.cpp \
+    network.cpp
 
 HEADERS += \
-    minifish.h
+    fileio.h \
+    minifish.h \
+    network.h
 
 FORMS += \
     minifish.ui

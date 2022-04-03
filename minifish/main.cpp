@@ -16,12 +16,4 @@
  */
 #include "minifish.h"
 
-#include <QApplication>
-
-int main(int argc, char *argv[])
-{
-    QApplication a(argc, argv);
-    MiniFish w;
-    w.show();
-    return a.exec();
-}
+QT_MAIN_APPLICATION
