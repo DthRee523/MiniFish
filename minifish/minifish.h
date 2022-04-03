@@ -2,39 +2,31 @@
  * Copyright 2022 DthRee.
  * All right reserved. See COPYRIGHT for detailed Information.
  *
- * @file       mainwindow.h
- * @brief      MainWindow Widget
+ * @file       minifish.h
+ * @brief      Main Function
  *
  * @author     DthRee<liuhuan@dthree.cn>
  * @date       2022/04/03
  * @history
  *****************************************************************************/
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef MINIFISH_H
+#define MINIFISH_H
 
-//QT Header
 #include <QMainWindow>
 
-//C++ Header
-#include "loginwindow.h"
-
 QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
+namespace Ui { class MiniFish; }
 QT_END_NAMESPACE
 
-class MainWindow : public QMainWindow
+class MiniFish : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
-
-public slots:
-    void getConnecedStatus(bool status);
+    MiniFish(QWidget *parent = nullptr);
+    ~MiniFish();
 
 private:
-    Ui::MainWindow *ui;
-    LoginWindow *loginWindow;
+    Ui::MiniFish *ui;
 };
-#endif // MAINWINDOW_H
+#endif // MINIFISH_H

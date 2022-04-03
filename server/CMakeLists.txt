@@ -16,5 +16,7 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core REQUIRED)
 
 add_executable(server
   main.cpp
+  network.cpp
+  network.h
 )
 target_link_libraries(server Qt${QT_VERSION_MAJOR}::Core)

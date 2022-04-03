@@ -1,7 +1,7 @@
 /**
  * Copyright (C) 2022 DthRee.
- * MiniFish LoginWindow Header File
- * Date: 2022.3.27
+ * MiniFish Main Form
+ * Date: 2022.4.3
  * By:Dthree
  * Version: 1.0
  * The purpose of Mini Fish is to allow everyone to enjoy mess around time with their peers.
@@ -14,13 +14,14 @@
  * 我是DthRe​​e，一个让人们在工作中快乐的摸鱼的发起者！
  * 去享受快乐！ 英文不好 上面是机翻内容
  */
-#include "mainwindow.h"
+#include "minifish.h"
+
 #include <QApplication>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    MainWindow w;
+    MiniFish w;
     w.show();
     return a.exec();
 }
