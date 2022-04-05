@@ -12,13 +12,24 @@ find_package(Qt5 COMPONENTS
         Core
         Gui
         Widgets
+        Network
         REQUIRED)
 
-add_executable(minifish main.cpp)
+add_executable(minifish
+        main.cpp
+        minifish.cpp
+        minifish.h
+        minifish.ui
+        JsonFileIO.cpp
+        JsonFileIO.h
+        NetWork.cpp
+        NetWork.h)
+
 target_link_libraries(minifish
         Qt5::Core
         Qt5::Gui
         Qt5::Widgets
+        Qt5::Network
         )
 
 if (WIN32)
