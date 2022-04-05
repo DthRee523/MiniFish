@@ -123,10 +123,20 @@
      <rect>
       <x>10</x>
       <y>50</y>
-      <width>161</width>
+      <width>111</width>
       <height>541</height>
      </rect>
     </property>
+    <item>
+     <property name="text">
+      <string>172.0.0.1</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>255.255.255.255</string>
+     </property>
+    </item>
    </widget>
    <widget class="QLineEdit" name="ip_line">
     <property name="geometry">
@@ -141,10 +151,10 @@
    <widget class="QTextEdit" name="chat_edit">
     <property name="geometry">
      <rect>
-      <x>180</x>
+      <x>130</x>
       <y>50</y>
-      <width>501</width>
-      <height>511</height>
+      <width>521</width>
+      <height>501</height>
      </rect>
     </property>
     <property name="html">
@@ -154,6 +164,50 @@ p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
+   </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>560</y>
+      <width>521</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="0">
+      <widget class="QLineEdit" name="message_line">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QPushButton" name="send_btn">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>发送</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
  </widget>

@@ -18,7 +18,9 @@ void NetWork::_connectToHost(QString ip, int port)
     socket->connectToHost(QHostAddress(ip), port);//执行网络连接
 }
 
-NetWork::~NetWork() noexcept {}
+NetWork::~NetWork() noexcept
+{
+}
 
 void NetWork::disConnect()
 {

@@ -1,7 +1,6 @@
 #include "minifish.h"
 #include "ui_minifish.h"
 
-
 minifish::minifish(QWidget *parent) :
         QMainWindow(parent), ui(new Ui::minifish) {
     ui->setupUi(this);
@@ -14,9 +13,8 @@ minifish::minifish(QWidget *parent) :
     this->setTabOrder(ui->ip_line, ui->port_line); //tab
     this->setTabOrder(ui->port_line, ui->name_line);
 
-
     //调用类初始化
-    networkSubThread = new QThread;
+    networkSubThread = new QThread(this);
     netWork = new NetWork;
     netWork->moveToThread(networkSubThread);
     networkSubThread->start();
@@ -30,8 +28,7 @@ minifish::minifish(QWidget *parent) :
     ui->chat_edit->setTextColor(Qt::red);
     ui->chat_edit->append("[" + time.toString("hh:mm:ss") + "]System: Welcome to MiniFish!");
     ui->chat_edit->setTextColor(cur_text_color);
-
-
+    ui->message_line->setPlaceholderText("按Enter或右侧按钮发送");
 
     //QT连接
     connect(ui->connect_btn, &QPushButton::clicked, this, [=]{
@@ -39,8 +36,18 @@ minifish::minifish(QWidget *parent) :
         {
             netWork->_connectToHost(ui->ip_line->text(), port);
         }
+        else if (ui->ip_line->text().isEmpty())
+        {
+            ui->ip_line->setStyleSheet("border-color: red;");//修改边框
+        }
+        else if (ui->name_line->text().isEmpty())
+        {
+            ui->name_line->setStyleSheet("border-color: red;");//修改边框
+        }
         else
         {
+            ui->ip_line->setStyleSheet("border-color: black;");
+            ui->name_line->setStyleSheet("border-color: black;");
             netWork->_connectToHost(ui->ip_line->text(), ui->port_line->text().toUInt());
         }
         connect(netWork, &NetWork::connectStatus, this , [=]{//连接成功时
@@ -54,9 +61,17 @@ minifish::minifish(QWidget *parent) :
         netWork->disConnect();
         setEdit();
     });
+
+    connect(ui->send_btn, &QPushButton::clicked, this, [=]{
+        //发送信息
+
+        ui->chat_edit->append("[" + time.toString("hh:mm:ss") + "]" + ui->name_line->text() + ": " + ui->message_line->text());
+        ui->message_line->clear();
+    });
 }
 
 minifish::~minifish() {
+    networkSubThread->deleteLater();
     delete netWork;
     delete ui;
 }
