@@ -1,5 +1,4 @@
-minifish/*.user
-minifish/*.user.*
+minifish/cmake*
 build*
 server/*.user
 server/*.user.*
