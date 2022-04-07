@@ -12,12 +12,11 @@ minifish::minifish(QWidget *parent) :
     //this->setWindowFlags(Qt::FramelessWindowHint | windowFlags()); //设置窗口无边框
     this->setTabOrder(ui->ip_line, ui->port_line); //tab
     this->setTabOrder(ui->port_line, ui->name_line);
-    qDebug() << "当前线程ID：" << QThread::currentThreadId();
 
     //调用类初始化
     netWork = new NetWork;
-    QThread *networkSubThread = new QThread;
-    netWork->moveToThread(networkSubThread);
+    networkSubThread = new QThread;
+    netWork->moveToThread(networkSubThread); //TODO 线程BUG
     qDebug() << "主线程ID" << QThread::currentThreadId();
     networkSubThread->start();
     time = QTime::currentTime();
@@ -31,9 +30,12 @@ minifish::minifish(QWidget *parent) :
     ui->chat_edit->append("[" + time.toString("hh:mm:ss") + "]System: Welcome to MiniFish!");
     ui->chat_edit->setTextColor(cur_text_color);
     ui->message_line->setPlaceholderText("按Enter或右侧按钮发送");
+    //TODO 读取json文件获取收藏夹内容
+
 
     //QT连接
     connect(ui->connect_btn, &QPushButton::clicked, this, [=]{
+
         if (ui->ip_line->text().isEmpty())
         {
             ui->ip_line->setPlaceholderText("ip not null!");
@@ -89,9 +91,18 @@ minifish::minifish(QWidget *parent) :
     });
 
     connect(this, &minifish::sendMessageSignal, netWork, &NetWork::sendMessage);
+
+    connect(ui->delete_btn, &QPushButton::clicked, this, [=]{
+        ui->ipList_list->takeItem(ui->ipList_list->row(ui->ipList_list->selectedItems()[0]));
+        //TODO 重新整理并写入到json配置文件中
+    });
 }
 
-minifish::~minifish() {
+minifish::~minifish()
+{
+    networkSubThread->quit();
+    networkSubThread->wait();
+    delete netWork;
     delete ui;
 }
 

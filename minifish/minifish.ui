@@ -124,19 +124,9 @@
       <x>10</x>
       <y>50</y>
       <width>111</width>
-      <height>541</height>
+      <height>501</height>
      </rect>
     </property>
-    <item>
-     <property name="text">
-      <string>172.0.0.1</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>255.255.255.255</string>
-     </property>
-    </item>
    </widget>
    <widget class="QLineEdit" name="ip_line">
     <property name="geometry">
@@ -165,7 +155,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>130</x>
@@ -208,6 +198,19 @@ p, li { white-space: pre-wrap; }
       </widget>
      </item>
     </layout>
+   </widget>
+   <widget class="QPushButton" name="delete_btn">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>560</y>
+      <width>111</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>删除</string>
+    </property>
    </widget>
   </widget>
  </widget>

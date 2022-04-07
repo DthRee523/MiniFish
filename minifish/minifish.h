@@ -4,6 +4,7 @@
 //QT Header
 #include <QMainWindow>
 #include <QApplication>
+#include <QAbstractItemView>
 #include <QDebug>
 #include <QString>
 #include <QThread>
@@ -43,6 +44,7 @@ private:
     QTime time;
     QColor cur_text_color;
     NetWork *netWork;
+    QThread *networkSubThread;
 
     QString windowTitle = "未连接";
     int port = 4426;//default port
