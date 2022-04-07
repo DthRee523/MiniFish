@@ -5,14 +5,25 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QFile>
+#include <QByteArray>
+#include <QString>
+
+struct MessageData
+{
+    QString SeverName;
+    QString UserName;
+    QString Message;
+};
 
 class JsonFileIO {
 public:
     JsonFileIO();
 
-    ~JsonFileIO();
+    QByteArray sendMessage(QString name, QString message);
 
-private:
+    MessageData recvMessage(QByteArray recvData);
+
+    ~JsonFileIO();
 
 };
 

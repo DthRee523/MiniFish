@@ -8,6 +8,7 @@
 #include <QString>
 #include <QThread>
 #include <QTime>
+#include <QTimer>
 
 //C++ Header
 #include "NetWork.h"
@@ -39,10 +40,9 @@ public:
 
 private:
     Ui::minifish *ui;
-    QThread *networkSubThread;
-    NetWork *netWork;
     QTime time;
     QColor cur_text_color;
+    NetWork *netWork;
 
     QString windowTitle = "未连接";
     int port = 4426;//default port
@@ -50,6 +50,8 @@ private:
 
 signals:
     void disConnect();
+
+    void sendMessageSignal(QString name, QString message);
 };
 
 

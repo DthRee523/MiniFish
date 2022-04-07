@@ -10,6 +10,9 @@
 #include <QByteArray>
 #include <QDebug>
 #include <QObject>
+#include <QThread>
+
+#include "JsonFileIO.h"
 
 class NetWork: public QObject
 {
@@ -24,11 +27,16 @@ public:
 public slots:
     void disConnect();
 
+    void sendMessage(QString name, QString message);
+
 signals:
     void connectStatus();       //connect status signal
 
+    void recvNetworkDataSignal(MessageData messageData);
+
 private:
     QTcpSocket *socket;         //socket
+    JsonFileIO jsonFileIo;
 };
 
 

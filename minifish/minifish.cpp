@@ -12,11 +12,13 @@ minifish::minifish(QWidget *parent) :
     //this->setWindowFlags(Qt::FramelessWindowHint | windowFlags()); //设置窗口无边框
     this->setTabOrder(ui->ip_line, ui->port_line); //tab
     this->setTabOrder(ui->port_line, ui->name_line);
+    qDebug() << "当前线程ID：" << QThread::currentThreadId();
 
     //调用类初始化
-    networkSubThread = new QThread(this);
     netWork = new NetWork;
+    QThread *networkSubThread = new QThread;
     netWork->moveToThread(networkSubThread);
+    qDebug() << "主线程ID" << QThread::currentThreadId();
     networkSubThread->start();
     time = QTime::currentTime();
     cur_text_color = ui->chat_edit->textColor();
@@ -32,30 +34,32 @@ minifish::minifish(QWidget *parent) :
 
     //QT连接
     connect(ui->connect_btn, &QPushButton::clicked, this, [=]{
-        if (ui->port_line->text().isEmpty())
+        if (ui->ip_line->text().isEmpty())
         {
-            netWork->_connectToHost(ui->ip_line->text(), port);
-        }
-        else if (ui->ip_line->text().isEmpty())
-        {
-            ui->ip_line->setStyleSheet("border-color: red;");//修改边框
+            ui->ip_line->setPlaceholderText("ip not null!");
+            QTimer::singleShot(3000, ui->ip_line, [=]{ ui->ip_line->setPlaceholderText(""); });
         }
         else if (ui->name_line->text().isEmpty())
         {
-            ui->name_line->setStyleSheet("border-color: red;");//修改边框
+            ui->name_line->setPlaceholderText("name not null!");
+            QTimer::singleShot(3000, ui->name_line, [=]{ ui->name_line->setPlaceholderText(""); });
         }
         else
         {
-            ui->ip_line->setStyleSheet("border-color: black;");
-            ui->name_line->setStyleSheet("border-color: black;");
-            netWork->_connectToHost(ui->ip_line->text(), ui->port_line->text().toUInt());
+            if (ui->port_line->text().isEmpty())
+            {
+                netWork->_connectToHost(ui->ip_line->text(), port);
+            }
+            else
+            {
+                netWork->_connectToHost(ui->ip_line->text(), ui->port_line->text().toUInt());
+            }
         }
-        connect(netWork, &NetWork::connectStatus, this , [=]{//连接成功时
-            qDebug() << "接收成功！";
-            setDisEdit();
-            windowTitle = ui->ip_line->text() + " " + ui->name_line->text();
-            this->setWindowTitle(windowTitle);
-        });
+    });
+    connect(netWork, &NetWork::connectStatus, this , [=]{//连接成功时
+        setDisEdit();
+        windowTitle = ui->ip_line->text() + " " + ui->name_line->text();
+        this->setWindowTitle(windowTitle);
     });
     connect(ui->disConnect_btn, &QPushButton::clicked, this, [=]{
         netWork->disConnect();
@@ -64,15 +68,30 @@ minifish::minifish(QWidget *parent) :
 
     connect(ui->send_btn, &QPushButton::clicked, this, [=]{
         //发送信息
-
-        ui->chat_edit->append("[" + time.toString("hh:mm:ss") + "]" + ui->name_line->text() + ": " + ui->message_line->text());
+        emit sendMessageSignal(ui->name_line->text(), ui->message_line->text());
+        //测试代码
+        //ui->chat_edit->append("[" + time.toString("hh:mm:ss") + "]" + ui->name_line->text() + ": " + ui->message_line->text());
         ui->message_line->clear();
     });
+
+    connect(netWork, &NetWork::recvNetworkDataSignal, this, [=](MessageData messageData){
+        if (messageData.SeverName.isEmpty())
+        {
+            //服务器键值对为空则为接收信息
+            ui->chat_edit->append("[" + time.toString("hh:mm:ss") + "]" + messageData.UserName + ": " + messageData.Message);
+        }
+        else
+        {
+            //服务器名称不为空则为连接信息
+            windowTitle = messageData.SeverName + "-" + ui->name_line->text();
+            this->setWindowTitle(windowTitle);
+        }
+    });
+
+    connect(this, &minifish::sendMessageSignal, netWork, &NetWork::sendMessage);
 }
 
 minifish::~minifish() {
-    networkSubThread->deleteLater();
-    delete netWork;
     delete ui;
 }
 
