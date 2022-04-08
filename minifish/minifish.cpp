@@ -17,8 +17,7 @@ minifish::minifish(QWidget *parent) :
     netWork = new NetWork;
     networkSubThread = new QThread;
     netWork->moveToThread(networkSubThread); //TODO 线程BUG
-    qDebug() << "主线程ID" << QThread::currentThreadId();
-    networkSubThread->start();
+    qDebug() << "主线程ID" << QThread::currentThread();
     time = QTime::currentTime();
     cur_text_color = ui->chat_edit->textColor();
 
@@ -96,11 +95,13 @@ minifish::minifish(QWidget *parent) :
         ui->ipList_list->takeItem(ui->ipList_list->row(ui->ipList_list->selectedItems()[0]));
         //TODO 重新整理并写入到json配置文件中
     });
+
+    networkSubThread->start();
 }
 
 minifish::~minifish()
 {
-    networkSubThread->quit();
+    networkSubThread->exit();
     networkSubThread->wait();
     delete netWork;
     delete ui;
